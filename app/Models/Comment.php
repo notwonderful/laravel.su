@@ -63,7 +63,7 @@ class Comment extends Model
     /**
      * Get the parent comment of the comment.
      */
-    public function parent()
+    public function parent(): BelongsTo
     {
         return $this->belongsTo(static::class, 'parent_id');
     }

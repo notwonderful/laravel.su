@@ -6,6 +6,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Tag extends Model
 {
@@ -53,9 +55,9 @@ class Tag extends Model
     /**
      * Returns the polymorphic relationship.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     * @return MorphTo
      */
-    public function taggable()
+    public function taggable(): MorphTo
     {
         return $this->morphTo();
     }
@@ -63,9 +65,9 @@ class Tag extends Model
     /**
      * Returns this tag tagged entities.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function tagged()
+    public function tagged(): HasMany
     {
         return $this->hasMany(static::$taggedModel, 'tag_id');
     }

@@ -40,7 +40,7 @@ class DocumentationSection extends Model
     /**
      * @return array
      */
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         return [
             'title'   => $this->title,

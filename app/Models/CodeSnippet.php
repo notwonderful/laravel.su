@@ -28,7 +28,7 @@ class CodeSnippet extends Model
      *
      * @return mixed
      */
-    public function prunable()
+    public function prunable(): mixed
     {
         // Retrieve snippets older than one month
         return static::where('created_at', '<=', now()->subMonth());

@@ -110,7 +110,7 @@ class Position extends Model
     /**
      * Get the presenter for the model.
      *
-     * @return \App\Models\Presenters\PositionPresenter
+     * @return PositionPresenter
      */
     public function presenter(): PositionPresenter
     {

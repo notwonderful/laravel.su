@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\HasAuthor;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Orchid\Filters\Filterable;
 use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
@@ -29,9 +30,9 @@ class IdeaRequest extends Model
     /**
      * Get the idea key associated with the idea request.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
-    public function key()
+    public function key(): HasOne
     {
         return $this->hasOne(IdeaKey::class, 'request_id');
     }

@@ -6,6 +6,8 @@ use App\Models\Presenters\UserPresenter;
 use App\Notifications\GreetNotification;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Notification;
@@ -120,12 +122,12 @@ class User extends Authenticatable
     /**
      * @return UserPresenter
      */
-    public function presenter()
+    public function presenter(): UserPresenter
     {
         return new UserPresenter($this);
     }
 
-    public function posts()
+    public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
     }
@@ -141,7 +143,7 @@ class User extends Authenticatable
     /**
      * Returns all comments that this user has made.
      */
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
@@ -149,7 +151,7 @@ class User extends Authenticatable
     /**
      * Returns all packages that this user has made.
      */
-    public function packages()
+    public function packages(): HasMany
     {
         return $this->hasMany(Package::class);
     }
@@ -157,7 +159,7 @@ class User extends Authenticatable
     /**
      * Returns all codeSnippets that this user has made.
      */
-    public function codeSnippets()
+    public function codeSnippets(): HasMany
     {
         return $this->hasMany(CodeSnippet::class);
     }
@@ -165,17 +167,17 @@ class User extends Authenticatable
     /**
      * Returns only approved comments that this user has made.
      */
-    public function approvedComments()
+    public function approvedComments(): MorphMany
     {
         return $this->morphMany(Comment::class, 'commenter')->where('approved', true);
     }
 
-    public function meets()
+    public function meets(): HasMany
     {
         return $this->hasMany(Meet::class);
     }
 
-    public function positions()
+    public function positions(): HasMany
     {
         return $this->hasMany(Position::class);
     }
@@ -183,9 +185,9 @@ class User extends Authenticatable
     /**
      * Define the "achievements" relationship.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function achievements()
+    public function achievements(): HasMany
     {
         return $this->hasMany(Achievement::class);
     }
@@ -193,9 +195,9 @@ class User extends Authenticatable
     /**
      * Define the "achievements" relationship.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function challengesReapositories()
+    public function challengesReapositories(): HasMany
     {
         return $this->hasMany(ChallengeApplication::class);
     }

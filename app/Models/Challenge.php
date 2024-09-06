@@ -6,6 +6,7 @@ use App\Models\Concerns\LogsActivityFillable;
 use App\Models\Presenters\ChallengePresenter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Metrics\Chartable;
@@ -63,9 +64,9 @@ class Challenge extends Model
     /**
      * Define a one-to-many relationship with ChallengeApplication.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function applications(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function applications(): HasMany
     {
         return $this->hasMany(ChallengeApplication::class);
     }
@@ -73,11 +74,11 @@ class Challenge extends Model
     /**
      * Scope a query to only include active challenges.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param Builder $query
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
-    public function scopeActive(Builder $query)
+    public function scopeActive(Builder $query): Builder
     {
         return $query->where('stop_at', '>=', now())->latest();
     }

@@ -6,6 +6,7 @@ use App\Models\Presenters\AchievementPresenter;
 use App\Notifications\AchievementNotification;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Notification;
 
 class Achievement extends Model
@@ -39,9 +40,9 @@ class Achievement extends Model
     /**
      * Get the user that owns the achievement.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -49,7 +50,7 @@ class Achievement extends Model
     /**
      * Get the presenter instance for the achievement.
      *
-     * @return \App\Models\Presenters\AchievementPresenter
+     * @return AchievementPresenter
      */
     public function presenter(): AchievementPresenter
     {

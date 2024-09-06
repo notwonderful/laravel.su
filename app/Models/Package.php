@@ -80,9 +80,9 @@ class Package extends Model
     ];
 
     /**
-     * @return \App\Models\Presenters\PackagePresenter
+     * @return PackagePresenter
      */
-    public function presenter()
+    public function presenter(): PackagePresenter
     {
         return new PackagePresenter($this);
     }
